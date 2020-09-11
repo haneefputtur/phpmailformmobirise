@@ -1,0 +1,47 @@
+<!---- Edited Form -->
+
+<!---Formbuilder Form--->
+<form action="digixmail.php" id="myForm" method="POST" class="mbr-form form-with-styler" data-form-title="Mobirise Form">
+<div class="row">
+<div id="feedback" data-form-alert="" class="alert alert-success col-12">Please Fill and Submit</div>
+<div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">
+</div>
+</div>
+<div class="dragArea row">
+<div class="col-md-12 form-group " data-for="name">
+<input type="text" name="name" placeholder="Name" data-form-field="Name" required="required" class="form-control px-3 display-7" id="name-header15-a">
+</div>
+<div class="col-md-12 form-group " data-for="email">
+<input type="email" name="email" placeholder="Email" data-form-field="Email" required="required" class="form-control px-3 display-7" id="email-header15-a">
+</div>
+<div data-for="phone" class="col-md-12 form-group ">
+<input type="tel" name="phone" placeholder="Phone" data-form-field="Phone" class="form-control px-3 display-7" id="phone-header15-a">
+</div>
+<div data-for="message" class="col-md-12 form-group ">
+<textarea name="message" placeholder="Message" data-form-field="Message" class="form-control px-3 display-7" id="message-header15-a"></textarea>
+</div>
+<div class="col-md-12 input-group-btn">
+<button type="submit" id="sendMail" class="btn btn-secondary btn-form display-4">SEND QUERY</button></div>
+</div>
+</form><!---Formbuilder Form--->
+
+
+
+<!--- Jquery Script -->
+
+<script>$(document).ready(function () {
+//send button click
+$('#sendMail').on('click', function (e) {
+    e.preventDefault();
+    $.post('digixmail.php', $('#myForm').serialize(), function (data) {
+        //show the results if the mail was sent or not
+        var res = $.parseJSON(data);
+        if (res.result === true) {
+           $('#feedback').html('Your mail was sent');
+        }else {
+           $('#feedback').html('Your mail was not sent');
+        }
+    });
+});
+});
+  </script>
